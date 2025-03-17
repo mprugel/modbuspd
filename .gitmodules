@@ -1,3 +1,6 @@
 [submodule "libmodbus"]
 	path = libmodbus
 	url = https://github.com/stephane/libmodbus.git
+[submodule "pd.cmake"]
+	path = pd.cmake
+	url = https://github.com/pure-data/pd.cmake
