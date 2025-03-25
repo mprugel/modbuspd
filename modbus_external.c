@@ -52,7 +52,7 @@ void read_register(t_modbus *x, t_symbol* address)
     int ret = modbus_read_registers(x->t_modbus_handle, i_address, 1, &value);
     if(ret == -1)
     {
-      post("Could not read register %x!", address);
+      post("Could not read register %x!", i_address);
     }
     outlet_float(x->f_out, value);
   }
@@ -73,7 +73,7 @@ void write_register(t_modbus *x, t_symbol* address, float value)
     int ret = modbus_write_register(x->t_modbus_handle, i_address, (uint16_t)value);
     if(ret == -1)
     {
-      post("Could not write register %x!", address);
+      post("Could not write register %x! val: %f", i_address, value);
     }
   }
   else
