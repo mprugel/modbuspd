@@ -12,10 +12,11 @@ include_directories(libmodbus/src libmodbus)
 #set_property(TARGET modbus PROPERTY IMPORTED_LOCATION "/usr/local/lib/libmodbus.so")
 
 # Declare the name of the project:
-project(modbus_external)
+project(modbus)
 
-
+set(SOURCES ./libmodbus/src/modbus.c ./libmodbus/src/modbus-data.c ./libmodbus/src/modbus-rtu.c ./modbus.c)
 file(GLOB EXTERNAL_SOURCES "${CMAKE_SOURCE_DIR}/libmodbus/src/*.c")
-list(APPEND EXTERNAL_SOURCES modbus_external.c)
+set(EXTERNAL_SOURCES "${EXTERNAL_SOURCES} ${CMAKE_SOURCE_DIR}/modbus.c")
+message(SOURCES="${EXTERNAL_SOURCES}")
 # Add one or several externals (5):
-pd_add_external(modbus_external ${EXTERNAL_SOURCES})
+add_pd_external(modbus modbus ${SOURCES})
