@@ -1,10 +1,10 @@
 #include "m_pd.h"
-#include <modbus/modbus.h>
+#include "modbus.h"
 #include <stdlib.h>
 #include <stdint.h>
 #include <string.h>
-#include <modbus/modbus-rtu.h>
-#include <modbus/modbus-version.h>
+#include "modbus-rtu.h"
+#include "modbus-version.h"
 
 static t_class *modbus_class;
 
