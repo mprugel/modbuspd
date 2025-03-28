@@ -3,7 +3,7 @@ cmake_minimum_required(VERSION 3.18)
 
 # Include pd.cmake (1):
 set(PDCMAKE_DIR pd.cmake/ CACHE PATH "Path to pd.cmake")
-set(PD_SOURCES_PATH /usr/local/include/pd)
+#set(PD_SOURCES_PATH /usr/local/include/pd)
 
 include(${PDCMAKE_DIR}/pd.cmake )
 include_directories(libmodbus/src libmodbus)
@@ -14,9 +14,11 @@ include_directories(libmodbus/src libmodbus)
 # Declare the name of the project:
 project(modbus)
 
-set(SOURCES ./libmodbus/src/modbus.c ./libmodbus/src/modbus-data.c ./libmodbus/src/modbus-rtu.c ./modbus.c)
-file(GLOB EXTERNAL_SOURCES "${CMAKE_SOURCE_DIR}/libmodbus/src/*.c")
-set(EXTERNAL_SOURCES "${EXTERNAL_SOURCES} ${CMAKE_SOURCE_DIR}/modbus.c")
-message(SOURCES="${EXTERNAL_SOURCES}")
+set(SOURCES ./libmodbus/src/modbus-data.c ./libmodbus/src/modbus.c ./libmodbus/src/modbus-rtu.c ./modbus_ext.c)
+
 # Add one or several externals (5):
 add_pd_external(modbus modbus ${SOURCES})
+
+if(WIN32)
+target_link_libraries(modbus PUBLIC ws2_32)
+endif()
