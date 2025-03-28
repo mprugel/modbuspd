@@ -1,0 +1,12 @@
+#N canvas 0 0 1187 775 16;
+#X obj 122 228 modbus /dev/ttyUSB0 9600 1;
+#X msg 83 99 connect;
+#X msg 207 99 write_register 0x0004 10;
+#X msg 233 166 read_register 0x0005;
+#X floatatom 127 317 5 0 0 0 - - - 0;
+#X text 8 16 Addresses must be hex values starting with 0x !;
+#X text 8 59 Values passed to write_registers must be integers !;
+#X connect 0 0 4 0;
+#X connect 1 0 0 0;
+#X connect 2 0 0 0;
+#X connect 3 0 0 0;
