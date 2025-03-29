@@ -20,3 +20,6 @@ cmake --build .
 
 ### Windows
 For Windows mingw64 is used for compilation. Just install it and run the Linux command in the mingw64 shell to compile the external.
+
+### MacOS
+Currently not supported, although the build should work with the Linux commands.
