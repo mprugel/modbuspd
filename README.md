@@ -3,6 +3,7 @@ This external for Pure Data is a simple Wrapper for the libmodbus C library.
 Following Commands are supported at the moment:
 - Reading of a singe register
 - Wrting of a single register
+<img src="https://github.com/mprugel/modbuspd/blob/main/modbus_help.png?raw=true" width="450px">
 
 ## Build
 ### Linux
