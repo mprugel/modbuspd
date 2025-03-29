@@ -31,10 +31,8 @@ void *modbus_new(t_symbol *s, int argc, t_atom *argv)
   if(argc == 3)
   {
     atom_string(argv, x->s_device, 128);
-    //strcpy(x->s_device, (char*)argv);
     x->i_baudrate = *((int*)(argv + 1));
     x->i_device_id = *((int*)(argv + 2));
-    //x->t_modbus_handle = modbus_new_rtu(x->s_device, x->i_baudrate, 'N', 8, 1);
   }
 
   return (void *)x;
@@ -122,5 +120,5 @@ void modbus_setup(void) {
   class_addmethod(modbus_class,
       (t_method)read_register,
       gensym("read_register"), A_DEFSYMBOL, 0);
-  class_sethelpsymbol(modbus_class, gensym("help-modbus"));
+  //class_sethelpsymbol(modbus_class, gensym("help-modbus"));
 }
