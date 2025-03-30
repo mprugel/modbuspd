@@ -5,13 +5,19 @@ Following Commands are supported at the moment:
 - Writing of a single register
 <img src="https://github.com/mprugel/modbuspd/blob/main/modbus_help.png?raw=true" width="450px">
 
-## Build
+## Installation
+- Download the zip folder for your Operating System under the **Release** section.
+- Extract the zip archive and copy the `modbus` folder into the Pure Data externals folder.
+- Add the `modbus` folder in the preferences to the path
+- 
+## Build from Sources
 ### Linux
 ```
 git submodule init
 git submodule update
 cd libmodbus
 ./configure
+cd ..
 mkdir build
 cd build
 cmake ..
