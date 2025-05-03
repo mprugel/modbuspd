@@ -41,7 +41,7 @@ void *modbus_new(t_symbol *s, int argc, t_atom *argv)
 void read_register(t_modbus *x, t_symbol* address)
 {
   uint16_t value = 0;
-  post("Read address: %s", address->s_name);
+  //post("Read address: %s", address->s_name);
   int i_address = (int)strtol(address->s_name, NULL, 0);
 
   if(x->t_modbus_handle != NULL && x->connected) 
@@ -62,7 +62,7 @@ void read_register(t_modbus *x, t_symbol* address)
 
 void write_register(t_modbus *x, t_symbol* address, float value)
 {
-  post("Write address: %s", address->s_name);
+  //post("Write address: %s", address->s_name);
   int i_address = (int)strtol(address->s_name, NULL, 0);
 
   if(x->t_modbus_handle != NULL && x->connected) 
@@ -78,6 +78,18 @@ void write_register(t_modbus *x, t_symbol* address, float value)
   {
     post("Modbus not connected!");
   }
+}
+
+void modbus_do_disconnect(t_modbus *x)
+{
+    if(x->connected == 0)
+    {
+      post("Modbus not connected!");
+      return;
+    }
+    modbus_close(x->t_modbus_handle);
+    modbus_free(x->t_modbus_handle);
+    x->connected = 0;
 }
 
 void modbus_do_connect(t_modbus *x)
@@ -114,6 +126,9 @@ void modbus_setup(void) {
   class_addmethod(modbus_class,
       (t_method)modbus_do_connect,
       gensym("connect"), 0);
+  class_addmethod(modbus_class,
+      (t_method)modbus_do_disconnect,
+      gensym("disconnect"), 0);
   class_addmethod(modbus_class,
       (t_method)write_register,
       gensym("write_register"), A_DEFSYMBOL, A_FLOAT, 0);
